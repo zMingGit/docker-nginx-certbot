@@ -73,8 +73,8 @@ get_certificate() {
 
     echo "running certbot ... $letsencrypt_url $1 $2"
     certbot certonly --agree-tos --keep -n --text --email $2 --server \
-        $letsencrypt_url -d $1 --http-01-port 1337 \
-        --standalone --preferred-challenges http-01 --debug
+        $letsencrypt_url -d $1  \
+        --manual --manual-auth-hook /scritps/post_auth --cert-name $1 --manual-public-ip-logging-ok --force-renewal  --preferred-challenges http-01 --debug
 }
 
 # Given a domain name, return true if a renewal is required (last renewal
